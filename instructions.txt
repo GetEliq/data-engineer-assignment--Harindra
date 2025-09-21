@@ -1,0 +1,24 @@
+# Setup and Run Instructions
+
+Create virtual environment
+   python3 -m venv .env
+
+Activate environment
+   # Linux / macOS
+   source .env/bin/activate
+ 
+Upgrade pip
+   pip install --upgrade pip
+
+Install requirements
+   pip install -r requirements.txt
+
+Run ETL pipeline
+   python main.py
+   
+     • Read parquet files in data/
+     • Generate hourly + daily features
+     • Save results into SQLite (data/meter_data.db) - just for testing purposes; not the industry standard cassandra like DB option was used here
+     • Write outputs into outputs/
+     • Execute predefined queries in src/sql/queries.py - just used to test the insights
+     • Save results to csv in sql/outputs/ - again for the testing purposes; should be saved in proper data storage.
