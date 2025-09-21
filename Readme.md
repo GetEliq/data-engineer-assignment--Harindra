@@ -1,6 +1,6 @@
 # Energy Consumption Data Platform
 
-The system ingests parquet data, engineers features, stores results in SQLite, and runs SQL-based analytics for insights.
+The system ingests parquet data, engineers features, stores results in SQLite (just for testing purposes; need to use Cassandra for industry standards), and runs SQL-based analytics for insights.
  
 ## 📂 Repository Structure
 src/
