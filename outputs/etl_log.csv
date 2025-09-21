@@ -1,0 +1,459 @@
+2025-09-21 15:30:22,896,INFO,src.etl.etl_run,"Starting ETL: reading input /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/*.parquet"
+2025-09-21 15:30:22,896,INFO,src.data_io.reader,"Reading parquet /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/home_assignment_raw_data.parquet"
+2025-09-21 15:30:22,912,INFO,src.data_io.reader,"Total rows read: 365"
+2025-09-21 15:30:23,040,INFO,src.data_io.reader,"Expanded into 8760 hourly rows"
+2025-09-21 15:30:23,064,INFO,src.etl.etl_run,"Wrote hourly raw csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_raw.csv"
+2025-09-21 15:39:22,976,INFO,src.etl.etl_run,"Starting ETL: reading input /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/*.parquet"
+2025-09-21 15:39:22,977,INFO,src.data_io.reader,"Reading parquet /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/home_assignment_raw_data.parquet"
+2025-09-21 15:39:22,991,INFO,src.data_io.reader,"Total rows read: 365"
+2025-09-21 15:39:23,119,INFO,src.data_io.reader,"Expanded into 8760 hourly rows"
+2025-09-21 15:39:23,143,INFO,src.etl.etl_run,"Wrote hourly raw csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_raw.csv"
+2025-09-21 15:39:23,259,INFO,src.etl.etl_run,"Wrote hourly features csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_features.csv"
+2025-09-21 15:39:23,264,INFO,src.utils.db_utils,"Saving 8760 rows to table meter_hourly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:39:23,386,INFO,src.utils.db_utils,"Saved table meter_hourly"
+2025-09-21 15:41:06,746,INFO,src.etl.etl_run,"Starting ETL: reading input /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/*.parquet"
+2025-09-21 15:41:06,746,INFO,src.data_io.reader,"Reading parquet /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/home_assignment_raw_data.parquet"
+2025-09-21 15:41:06,761,INFO,src.data_io.reader,"Total rows read: 365"
+2025-09-21 15:41:06,891,INFO,src.data_io.reader,"Expanded into 8760 hourly rows"
+2025-09-21 15:41:06,915,INFO,src.etl.etl_run,"Wrote hourly raw csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_raw.csv"
+2025-09-21 15:41:07,032,INFO,src.etl.etl_run,"Wrote hourly features csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_features.csv"
+2025-09-21 15:41:07,037,INFO,src.utils.db_utils,"Saving 8760 rows to table meter_hourly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:41:07,170,INFO,src.utils.db_utils,"Saved table meter_hourly"
+2025-09-21 15:41:07,195,INFO,src.etl.etl_run,"Wrote daily csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_daily_agg.csv"
+2025-09-21 15:41:07,196,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:41:07,210,INFO,src.utils.db_utils,"Saved table meter_daily"
+2025-09-21 15:41:07,210,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily_rolling_7d in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:41:07,225,INFO,src.utils.db_utils,"Saved table meter_daily_rolling_7d"
+2025-09-21 15:41:07,231,INFO,src.etl.etl_run,"Wrote monthly csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_monthly_agg.csv"
+2025-09-21 15:41:07,232,INFO,src.utils.db_utils,"Saving 13 rows to table meter_monthly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:41:07,238,INFO,src.utils.db_utils,"Saved table meter_monthly"
+2025-09-21 15:41:07,239,INFO,src.etl.etl_run,"ETL finished. SQLite DB at /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:41:07,240,INFO,src.sql.run_queries,"Saved query yearly_consumption -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/yearly_consumption.csv (rows=2)"
+2025-09-21 15:41:07,240,ERROR,src.sql.run_queries,"Failed query top_meters_by_year: Execution failed on sql '
+        SELECT ext_dev_ref, year(substr(date_local,1,4)) as year, SUM(total_kwh) AS yearly_kwh
+        FROM meter_daily
+        GROUP BY ext_dev_ref, year
+        ORDER BY year DESC, yearly_kwh DESC LIMIT 100;
+    ': no such function: year"
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2664, in execute
+    cur.execute(sql, *args)
+sqlite3.OperationalError: no such function: year
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/run_queries.py", line 22, in run_queries
+    df = pd.read_sql_query(sql, conn)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 528, in read_sql_query
+    return pandas_sql.read_query(
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2728, in read_query
+    cursor = self.execute(sql, params)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2676, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql '
+        SELECT ext_dev_ref, year(substr(date_local,1,4)) as year, SUM(total_kwh) AS yearly_kwh
+        FROM meter_daily
+        GROUP BY ext_dev_ref, year
+        ORDER BY year DESC, yearly_kwh DESC LIMIT 100;
+    ': no such function: year
+2025-09-21 15:41:07,244,INFO,src.sql.run_queries,"Saved query hourly_profile_avg -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/hourly_profile_avg.csv (rows=24)"
+2025-09-21 15:41:07,245,INFO,src.sql.run_queries,"Saved query peak_hours_distribution -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_hours_distribution.csv (rows=2)"
+2025-09-21 15:41:07,245,INFO,src.sql.run_queries,"Saved query holiday_vs_nonholiday -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/holiday_vs_nonholiday.csv (rows=2)"
+2025-09-21 15:41:07,246,INFO,src.sql.run_queries,"Saved query vacation_effect -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/vacation_effect.csv (rows=2)"
+2025-09-21 15:41:07,247,INFO,src.sql.run_queries,"Saved query monthly_trends -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/monthly_trends.csv (rows=13)"
+2025-09-21 15:41:07,248,INFO,src.sql.run_queries,"Saved query consumption_categories -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/consumption_categories.csv (rows=1)"
+2025-09-21 15:41:07,248,INFO,src.sql.run_queries,"All queries completed."
+2025-09-21 15:42:06,157,INFO,src.etl.etl_run,"Starting ETL: reading input /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/*.parquet"
+2025-09-21 15:42:06,157,INFO,src.data_io.reader,"Reading parquet /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/home_assignment_raw_data.parquet"
+2025-09-21 15:42:06,171,INFO,src.data_io.reader,"Total rows read: 365"
+2025-09-21 15:42:06,301,INFO,src.data_io.reader,"Expanded into 8760 hourly rows"
+2025-09-21 15:42:06,325,INFO,src.etl.etl_run,"Wrote hourly raw csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_raw.csv"
+2025-09-21 15:42:06,441,INFO,src.etl.etl_run,"Wrote hourly features csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_features.csv"
+2025-09-21 15:42:06,446,INFO,src.utils.db_utils,"Saving 8760 rows to table meter_hourly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:42:06,576,INFO,src.utils.db_utils,"Saved table meter_hourly"
+2025-09-21 15:42:06,602,INFO,src.etl.etl_run,"Wrote daily csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_daily_agg.csv"
+2025-09-21 15:42:06,603,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:42:06,619,INFO,src.utils.db_utils,"Saved table meter_daily"
+2025-09-21 15:42:06,619,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily_rolling_7d in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:42:06,635,INFO,src.utils.db_utils,"Saved table meter_daily_rolling_7d"
+2025-09-21 15:42:06,641,INFO,src.etl.etl_run,"Wrote monthly csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_monthly_agg.csv"
+2025-09-21 15:42:06,642,INFO,src.utils.db_utils,"Saving 13 rows to table meter_monthly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:42:06,652,INFO,src.utils.db_utils,"Saved table meter_monthly"
+2025-09-21 15:42:06,652,INFO,src.etl.etl_run,"ETL finished. SQLite DB at /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:42:06,653,INFO,src.sql.run_queries,"Saved query yearly_consumption -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/yearly_consumption.csv (rows=2)"
+2025-09-21 15:42:06,654,INFO,src.sql.run_queries,"Saved query top_meters_by_year -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/top_meters_by_year.csv (rows=2)"
+2025-09-21 15:42:06,658,INFO,src.sql.run_queries,"Saved query hourly_profile_avg -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/hourly_profile_avg.csv (rows=24)"
+2025-09-21 15:42:06,659,INFO,src.sql.run_queries,"Saved query peak_hours_distribution -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_hours_distribution.csv (rows=2)"
+2025-09-21 15:42:06,660,INFO,src.sql.run_queries,"Saved query holiday_vs_nonholiday -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/holiday_vs_nonholiday.csv (rows=2)"
+2025-09-21 15:42:06,661,INFO,src.sql.run_queries,"Saved query vacation_effect -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/vacation_effect.csv (rows=2)"
+2025-09-21 15:42:06,661,ERROR,src.sql.run_queries,"Failed query monthly_trends: Execution failed on sql '
+        SELECT CAST(strftime('%Y', date_local) AS INTEGER) AS year,
+               CAST(strftime('%m', date_local) AS INTEGER) AS month,
+               SUM(monthly_total_kwh) AS total_kwh
+        FROM meter_monthly
+        GROUP BY year, month
+        ORDER BY year, month;
+    ': no such column: date_local"
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2664, in execute
+    cur.execute(sql, *args)
+sqlite3.OperationalError: no such column: date_local
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/run_queries.py", line 22, in run_queries
+    df = pd.read_sql_query(sql, conn)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 528, in read_sql_query
+    return pandas_sql.read_query(
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2728, in read_query
+    cursor = self.execute(sql, params)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2676, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql '
+        SELECT CAST(strftime('%Y', date_local) AS INTEGER) AS year,
+               CAST(strftime('%m', date_local) AS INTEGER) AS month,
+               SUM(monthly_total_kwh) AS total_kwh
+        FROM meter_monthly
+        GROUP BY year, month
+        ORDER BY year, month;
+    ': no such column: date_local
+2025-09-21 15:42:06,662,INFO,src.sql.run_queries,"Saved query consumption_categories -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/consumption_categories.csv (rows=1)"
+2025-09-21 15:42:06,663,INFO,src.sql.run_queries,"Saved query similar_meters -> /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/similar_meters.csv (rows=1)"
+2025-09-21 15:42:06,663,INFO,src.sql.run_queries,"All queries completed."
+2025-09-21 15:45:44,480,INFO,src.etl.etl_run,"Starting ETL: reading input /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/*.parquet"
+2025-09-21 15:45:44,481,INFO,src.data_io.reader,"Reading parquet /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/home_assignment_raw_data.parquet"
+2025-09-21 15:45:44,495,INFO,src.data_io.reader,"Total rows read: 365"
+2025-09-21 15:45:44,624,INFO,src.data_io.reader,"Expanded into 8760 hourly rows"
+2025-09-21 15:45:44,651,INFO,src.etl.etl_run,"Wrote hourly raw csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_raw.csv"
+2025-09-21 15:45:44,772,INFO,src.etl.etl_run,"Wrote hourly features csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_features.csv"
+2025-09-21 15:45:44,778,INFO,src.utils.db_utils,"Saving 8760 rows to table meter_hourly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:45:44,911,INFO,src.utils.db_utils,"Saved table meter_hourly"
+2025-09-21 15:45:44,937,INFO,src.etl.etl_run,"Wrote daily csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_daily_agg.csv"
+2025-09-21 15:45:44,937,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:45:44,954,INFO,src.utils.db_utils,"Saved table meter_daily"
+2025-09-21 15:45:44,954,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily_rolling_7d in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:45:44,971,INFO,src.utils.db_utils,"Saved table meter_daily_rolling_7d"
+2025-09-21 15:45:44,978,INFO,src.etl.etl_run,"Wrote monthly csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_monthly_agg.csv"
+2025-09-21 15:45:44,978,INFO,src.utils.db_utils,"Saving 13 rows to table meter_monthly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:45:44,988,INFO,src.utils.db_utils,"Saved table meter_monthly"
+2025-09-21 15:45:44,988,INFO,src.etl.etl_run,"ETL finished. SQLite DB at /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 15:45:44,989,INFO,src.sql.run_queries,"Running query: yearly_consumption"
+2025-09-21 15:45:44,990,INFO,src.sql.run_queries,"Saved yearly_consumption to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/yearly_consumption.csv (rows=2)"
+2025-09-21 15:45:44,990,INFO,src.sql.run_queries,"Running query: top_meters_by_year"
+2025-09-21 15:45:44,991,INFO,src.sql.run_queries,"Saved top_meters_by_year to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/top_meters_by_year.csv (rows=2)"
+2025-09-21 15:45:44,991,INFO,src.sql.run_queries,"Running query: hourly_profile_avg"
+2025-09-21 15:45:44,994,INFO,src.sql.run_queries,"Saved hourly_profile_avg to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/hourly_profile_avg.csv (rows=24)"
+2025-09-21 15:45:44,994,INFO,src.sql.run_queries,"Running query: peak_hours_distribution"
+2025-09-21 15:45:44,995,INFO,src.sql.run_queries,"Saved peak_hours_distribution to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_hours_distribution.csv (rows=2)"
+2025-09-21 15:45:44,995,INFO,src.sql.run_queries,"Running query: holiday_vs_nonholiday"
+2025-09-21 15:45:44,996,INFO,src.sql.run_queries,"Saved holiday_vs_nonholiday to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/holiday_vs_nonholiday.csv (rows=2)"
+2025-09-21 15:45:44,996,INFO,src.sql.run_queries,"Running query: vacation_effect"
+2025-09-21 15:45:44,997,INFO,src.sql.run_queries,"Saved vacation_effect to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/vacation_effect.csv (rows=2)"
+2025-09-21 15:45:44,997,INFO,src.sql.run_queries,"Running query: monthly_trends"
+2025-09-21 15:45:44,998,INFO,src.sql.run_queries,"Saved monthly_trends to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/monthly_trends.csv (rows=13)"
+2025-09-21 15:45:44,998,INFO,src.sql.run_queries,"Running query: consumption_categories"
+2025-09-21 15:45:44,999,INFO,src.sql.run_queries,"Saved consumption_categories to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/consumption_categories.csv (rows=1)"
+2025-09-21 15:45:44,999,INFO,src.sql.run_queries,"Running query: similar_meters"
+2025-09-21 15:45:45,000,INFO,src.sql.run_queries,"Saved similar_meters to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/similar_meters.csv (rows=1)"
+2025-09-21 15:45:45,000,INFO,src.sql.run_queries,"All queries executed."
+2025-09-21 19:24:25,682,INFO,src.etl.etl_run,"Starting ETL: reading input /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/*.parquet"
+2025-09-21 19:24:25,682,INFO,src.data_io.reader,"Reading parquet /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/home_assignment_raw_data.parquet"
+2025-09-21 19:24:25,697,INFO,src.data_io.reader,"Total rows read: 365"
+2025-09-21 19:24:25,833,INFO,src.data_io.reader,"Expanded into 8760 hourly rows"
+2025-09-21 19:24:25,857,INFO,src.etl.etl_run,"Wrote hourly raw csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_raw.csv"
+2025-09-21 19:24:25,977,INFO,src.etl.etl_run,"Wrote hourly features csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_features.csv"
+2025-09-21 19:24:25,982,INFO,src.utils.db_utils,"Saving 8760 rows to table meter_hourly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:24:26,117,INFO,src.utils.db_utils,"Saved table meter_hourly"
+2025-09-21 19:24:26,155,INFO,src.etl.etl_run,"Wrote daily csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_daily_agg.csv"
+2025-09-21 19:24:26,155,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:24:26,173,INFO,src.utils.db_utils,"Saved table meter_daily"
+2025-09-21 19:24:26,174,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily_rolling_7d in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:24:26,192,INFO,src.utils.db_utils,"Saved table meter_daily_rolling_7d"
+2025-09-21 19:24:26,200,INFO,src.etl.etl_run,"Wrote monthly csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_monthly_agg.csv"
+2025-09-21 19:24:26,200,INFO,src.utils.db_utils,"Saving 13 rows to table meter_monthly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:24:26,211,INFO,src.utils.db_utils,"Saved table meter_monthly"
+2025-09-21 19:24:26,211,INFO,src.etl.etl_run,"ETL finished. SQLite DB at /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:24:26,211,INFO,src.sql.run_queries,"Running query: yearly_consumption"
+2025-09-21 19:24:26,212,INFO,src.sql.run_queries,"Saved yearly_consumption to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/yearly_consumption.csv (rows=2)"
+2025-09-21 19:24:26,212,INFO,src.sql.run_queries,"Running query: top_meters_by_year"
+2025-09-21 19:24:26,213,INFO,src.sql.run_queries,"Saved top_meters_by_year to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/top_meters_by_year.csv (rows=2)"
+2025-09-21 19:24:26,213,INFO,src.sql.run_queries,"Running query: hourly_profile_avg"
+2025-09-21 19:24:26,216,INFO,src.sql.run_queries,"Saved hourly_profile_avg to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/hourly_profile_avg.csv (rows=24)"
+2025-09-21 19:24:26,216,INFO,src.sql.run_queries,"Running query: peak_hours_distribution"
+2025-09-21 19:24:26,217,INFO,src.sql.run_queries,"Saved peak_hours_distribution to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_hours_distribution.csv (rows=2)"
+2025-09-21 19:24:26,217,INFO,src.sql.run_queries,"Running query: holiday_vs_nonholiday"
+2025-09-21 19:24:26,218,INFO,src.sql.run_queries,"Saved holiday_vs_nonholiday to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/holiday_vs_nonholiday.csv (rows=2)"
+2025-09-21 19:24:26,218,INFO,src.sql.run_queries,"Running query: vacation_effect"
+2025-09-21 19:24:26,219,INFO,src.sql.run_queries,"Saved vacation_effect to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/vacation_effect.csv (rows=2)"
+2025-09-21 19:24:26,219,INFO,src.sql.run_queries,"Running query: monthly_trends"
+2025-09-21 19:24:26,220,INFO,src.sql.run_queries,"Saved monthly_trends to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/monthly_trends.csv (rows=13)"
+2025-09-21 19:24:26,220,INFO,src.sql.run_queries,"Running query: consumption_categories"
+2025-09-21 19:24:26,221,INFO,src.sql.run_queries,"Saved consumption_categories to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/consumption_categories.csv (rows=1)"
+2025-09-21 19:24:26,221,INFO,src.sql.run_queries,"Running query: similar_meters"
+2025-09-21 19:24:26,221,INFO,src.sql.run_queries,"Saved similar_meters to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/similar_meters.csv (rows=1)"
+2025-09-21 19:24:26,222,INFO,src.sql.run_queries,"Running query: night_day_consumption"
+2025-09-21 19:24:26,222,INFO,src.sql.run_queries,"Saved night_day_consumption to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/night_day_consumption.csv (rows=1)"
+2025-09-21 19:24:26,222,INFO,src.sql.run_queries,"Running query: weekend_weekday_ratio"
+2025-09-21 19:24:26,222,ERROR,src.sql.run_queries,"Query 'weekend_weekday_ratio' failed: Execution failed on sql '
+        SELECT SUM(CASE WHEN is_weekend=1 THEN total_kwh ELSE 0 END) * 1.0 /
+               NULLIF(SUM(CASE WHEN is_weekend=0 THEN total_kwh ELSE 0 END),0) AS weekend_weekday_ratio
+        FROM meter_daily;
+    ': no such column: is_weekend"
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2664, in execute
+    cur.execute(sql, *args)
+sqlite3.OperationalError: no such column: is_weekend
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/run_queries.py", line 24, in run_queries
+    df = pd.read_sql_query(sql, conn)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 528, in read_sql_query
+    return pandas_sql.read_query(
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2728, in read_query
+    cursor = self.execute(sql, params)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2676, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql '
+        SELECT SUM(CASE WHEN is_weekend=1 THEN total_kwh ELSE 0 END) * 1.0 /
+               NULLIF(SUM(CASE WHEN is_weekend=0 THEN total_kwh ELSE 0 END),0) AS weekend_weekday_ratio
+        FROM meter_daily;
+    ': no such column: is_weekend
+2025-09-21 19:24:26,223,INFO,src.sql.run_queries,"Running query: peak_to_mean_outliers"
+2025-09-21 19:24:26,224,INFO,src.sql.run_queries,"Saved peak_to_mean_outliers to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_to_mean_outliers.csv (rows=0)"
+2025-09-21 19:24:26,224,INFO,src.sql.run_queries,"Running query: load_shape_similarity_outliers"
+2025-09-21 19:24:26,224,ERROR,src.sql.run_queries,"Query 'load_shape_similarity_outliers' failed: Execution failed on sql '
+        SELECT *
+        FROM meter_daily
+        WHERE daily_load_similarity < 0.8
+        ORDER BY daily_load_similarity ASC;
+    ': no such column: daily_load_similarity"
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2664, in execute
+    cur.execute(sql, *args)
+sqlite3.OperationalError: no such column: daily_load_similarity
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/run_queries.py", line 24, in run_queries
+    df = pd.read_sql_query(sql, conn)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 528, in read_sql_query
+    return pandas_sql.read_query(
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2728, in read_query
+    cursor = self.execute(sql, params)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2676, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql '
+        SELECT *
+        FROM meter_daily
+        WHERE daily_load_similarity < 0.8
+        ORDER BY daily_load_similarity ASC;
+    ': no such column: daily_load_similarity
+2025-09-21 19:24:26,225,INFO,src.sql.run_queries,"All queries executed."
+2025-09-21 19:27:30,945,INFO,src.etl.etl_run,"Starting ETL: reading input /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/*.parquet"
+2025-09-21 19:27:30,946,INFO,src.data_io.reader,"Reading parquet /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/home_assignment_raw_data.parquet"
+2025-09-21 19:27:30,960,INFO,src.data_io.reader,"Total rows read: 365"
+2025-09-21 19:27:31,088,INFO,src.data_io.reader,"Expanded into 8760 hourly rows"
+2025-09-21 19:27:31,112,INFO,src.etl.etl_run,"Wrote hourly raw csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_raw.csv"
+2025-09-21 19:27:31,228,INFO,src.etl.etl_run,"Wrote hourly features csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_features.csv"
+2025-09-21 19:27:31,233,INFO,src.utils.db_utils,"Saving 8760 rows to table meter_hourly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:27:31,364,INFO,src.utils.db_utils,"Saved table meter_hourly"
+2025-09-21 19:27:31,402,INFO,src.etl.etl_run,"Wrote daily csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_daily_agg.csv"
+2025-09-21 19:27:31,402,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:27:31,420,INFO,src.utils.db_utils,"Saved table meter_daily"
+2025-09-21 19:27:31,421,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily_rolling_7d in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:27:31,439,INFO,src.utils.db_utils,"Saved table meter_daily_rolling_7d"
+2025-09-21 19:27:31,445,INFO,src.etl.etl_run,"Wrote monthly csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_monthly_agg.csv"
+2025-09-21 19:27:31,446,INFO,src.utils.db_utils,"Saving 13 rows to table meter_monthly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:27:31,456,INFO,src.utils.db_utils,"Saved table meter_monthly"
+2025-09-21 19:27:31,456,INFO,src.etl.etl_run,"ETL finished. SQLite DB at /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:27:31,457,INFO,src.sql.run_queries,"Running query: yearly_consumption"
+2025-09-21 19:27:31,458,INFO,src.sql.run_queries,"Saved yearly_consumption to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/yearly_consumption.csv (rows=2)"
+2025-09-21 19:27:31,458,INFO,src.sql.run_queries,"Running query: top_meters_by_year"
+2025-09-21 19:27:31,459,INFO,src.sql.run_queries,"Saved top_meters_by_year to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/top_meters_by_year.csv (rows=2)"
+2025-09-21 19:27:31,459,INFO,src.sql.run_queries,"Running query: hourly_profile_avg"
+2025-09-21 19:27:31,462,INFO,src.sql.run_queries,"Saved hourly_profile_avg to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/hourly_profile_avg.csv (rows=24)"
+2025-09-21 19:27:31,462,INFO,src.sql.run_queries,"Running query: peak_hours_distribution"
+2025-09-21 19:27:31,463,INFO,src.sql.run_queries,"Saved peak_hours_distribution to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_hours_distribution.csv (rows=2)"
+2025-09-21 19:27:31,463,INFO,src.sql.run_queries,"Running query: holiday_vs_nonholiday"
+2025-09-21 19:27:31,464,INFO,src.sql.run_queries,"Saved holiday_vs_nonholiday to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/holiday_vs_nonholiday.csv (rows=2)"
+2025-09-21 19:27:31,464,INFO,src.sql.run_queries,"Running query: vacation_effect"
+2025-09-21 19:27:31,465,INFO,src.sql.run_queries,"Saved vacation_effect to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/vacation_effect.csv (rows=2)"
+2025-09-21 19:27:31,465,INFO,src.sql.run_queries,"Running query: monthly_trends"
+2025-09-21 19:27:31,466,INFO,src.sql.run_queries,"Saved monthly_trends to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/monthly_trends.csv (rows=13)"
+2025-09-21 19:27:31,466,INFO,src.sql.run_queries,"Running query: consumption_categories"
+2025-09-21 19:27:31,467,INFO,src.sql.run_queries,"Saved consumption_categories to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/consumption_categories.csv (rows=1)"
+2025-09-21 19:27:31,467,INFO,src.sql.run_queries,"Running query: similar_meters"
+2025-09-21 19:27:31,467,INFO,src.sql.run_queries,"Saved similar_meters to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/similar_meters.csv (rows=1)"
+2025-09-21 19:27:31,468,INFO,src.sql.run_queries,"Running query: night_day_consumption"
+2025-09-21 19:27:31,468,INFO,src.sql.run_queries,"Saved night_day_consumption to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/night_day_consumption.csv (rows=1)"
+2025-09-21 19:27:31,468,INFO,src.sql.run_queries,"Running query: weekend_weekday_ratio"
+2025-09-21 19:27:31,468,ERROR,src.sql.run_queries,"Query 'weekend_weekday_ratio' failed: Execution failed on sql '
+        SELECT SUM(CASE WHEN is_weekend=1 THEN total_kwh ELSE 0 END) * 1.0 /
+               NULLIF(SUM(CASE WHEN is_weekend=0 THEN total_kwh ELSE 0 END),0) AS weekend_weekday_ratio
+        FROM meter_daily;
+    ': no such column: is_weekend"
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2664, in execute
+    cur.execute(sql, *args)
+sqlite3.OperationalError: no such column: is_weekend
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/run_queries.py", line 24, in run_queries
+    df = pd.read_sql_query(sql, conn)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 528, in read_sql_query
+    return pandas_sql.read_query(
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2728, in read_query
+    cursor = self.execute(sql, params)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2676, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql '
+        SELECT SUM(CASE WHEN is_weekend=1 THEN total_kwh ELSE 0 END) * 1.0 /
+               NULLIF(SUM(CASE WHEN is_weekend=0 THEN total_kwh ELSE 0 END),0) AS weekend_weekday_ratio
+        FROM meter_daily;
+    ': no such column: is_weekend
+2025-09-21 19:27:31,469,INFO,src.sql.run_queries,"Running query: peak_to_mean_outliers"
+2025-09-21 19:27:31,470,INFO,src.sql.run_queries,"Saved peak_to_mean_outliers to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_to_mean_outliers.csv (rows=0)"
+2025-09-21 19:27:31,470,INFO,src.sql.run_queries,"Running query: load_shape_similarity_outliers"
+2025-09-21 19:27:31,471,ERROR,src.sql.run_queries,"Query 'load_shape_similarity_outliers' failed: Execution failed on sql '
+        SELECT *
+        FROM meter_daily
+        WHERE daily_load_similarity < 0.8
+        ORDER BY daily_load_similarity ASC;
+    ': no such column: daily_load_similarity"
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2664, in execute
+    cur.execute(sql, *args)
+sqlite3.OperationalError: no such column: daily_load_similarity
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/run_queries.py", line 24, in run_queries
+    df = pd.read_sql_query(sql, conn)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 528, in read_sql_query
+    return pandas_sql.read_query(
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2728, in read_query
+    cursor = self.execute(sql, params)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2676, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql '
+        SELECT *
+        FROM meter_daily
+        WHERE daily_load_similarity < 0.8
+        ORDER BY daily_load_similarity ASC;
+    ': no such column: daily_load_similarity
+2025-09-21 19:27:31,471,INFO,src.sql.run_queries,"All queries executed."
+2025-09-21 19:28:04,598,INFO,src.etl.etl_run,"Starting ETL: reading input /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/*.parquet"
+2025-09-21 19:28:04,598,INFO,src.data_io.reader,"Reading parquet /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/home_assignment_raw_data.parquet"
+2025-09-21 19:28:04,613,INFO,src.data_io.reader,"Total rows read: 365"
+2025-09-21 19:28:04,739,INFO,src.data_io.reader,"Expanded into 8760 hourly rows"
+2025-09-21 19:28:04,763,INFO,src.etl.etl_run,"Wrote hourly raw csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_raw.csv"
+2025-09-21 19:28:04,880,INFO,src.etl.etl_run,"Wrote hourly features csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_features.csv"
+2025-09-21 19:28:04,886,INFO,src.utils.db_utils,"Saving 8760 rows to table meter_hourly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:28:05,017,INFO,src.utils.db_utils,"Saved table meter_hourly"
+2025-09-21 19:28:05,054,INFO,src.etl.etl_run,"Wrote daily csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_daily_agg.csv"
+2025-09-21 19:28:05,055,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:28:05,079,INFO,src.utils.db_utils,"Saved table meter_daily"
+2025-09-21 19:28:05,080,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily_rolling_7d in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:28:05,099,INFO,src.utils.db_utils,"Saved table meter_daily_rolling_7d"
+2025-09-21 19:28:05,106,INFO,src.etl.etl_run,"Wrote monthly csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_monthly_agg.csv"
+2025-09-21 19:28:05,106,INFO,src.utils.db_utils,"Saving 13 rows to table meter_monthly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:28:05,116,INFO,src.utils.db_utils,"Saved table meter_monthly"
+2025-09-21 19:28:05,117,INFO,src.etl.etl_run,"ETL finished. SQLite DB at /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:28:05,117,INFO,src.sql.run_queries,"Running query: yearly_consumption"
+2025-09-21 19:28:05,118,INFO,src.sql.run_queries,"Saved yearly_consumption to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/yearly_consumption.csv (rows=2)"
+2025-09-21 19:28:05,118,INFO,src.sql.run_queries,"Running query: top_meters_by_year"
+2025-09-21 19:28:05,119,INFO,src.sql.run_queries,"Saved top_meters_by_year to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/top_meters_by_year.csv (rows=2)"
+2025-09-21 19:28:05,119,INFO,src.sql.run_queries,"Running query: hourly_profile_avg"
+2025-09-21 19:28:05,122,INFO,src.sql.run_queries,"Saved hourly_profile_avg to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/hourly_profile_avg.csv (rows=24)"
+2025-09-21 19:28:05,123,INFO,src.sql.run_queries,"Running query: peak_hours_distribution"
+2025-09-21 19:28:05,123,INFO,src.sql.run_queries,"Saved peak_hours_distribution to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_hours_distribution.csv (rows=2)"
+2025-09-21 19:28:05,123,INFO,src.sql.run_queries,"Running query: holiday_vs_nonholiday"
+2025-09-21 19:28:05,124,INFO,src.sql.run_queries,"Saved holiday_vs_nonholiday to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/holiday_vs_nonholiday.csv (rows=2)"
+2025-09-21 19:28:05,124,INFO,src.sql.run_queries,"Running query: vacation_effect"
+2025-09-21 19:28:05,125,INFO,src.sql.run_queries,"Saved vacation_effect to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/vacation_effect.csv (rows=2)"
+2025-09-21 19:28:05,125,INFO,src.sql.run_queries,"Running query: monthly_trends"
+2025-09-21 19:28:05,126,INFO,src.sql.run_queries,"Saved monthly_trends to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/monthly_trends.csv (rows=13)"
+2025-09-21 19:28:05,126,INFO,src.sql.run_queries,"Running query: consumption_categories"
+2025-09-21 19:28:05,127,INFO,src.sql.run_queries,"Saved consumption_categories to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/consumption_categories.csv (rows=1)"
+2025-09-21 19:28:05,127,INFO,src.sql.run_queries,"Running query: similar_meters"
+2025-09-21 19:28:05,128,INFO,src.sql.run_queries,"Saved similar_meters to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/similar_meters.csv (rows=1)"
+2025-09-21 19:28:05,128,INFO,src.sql.run_queries,"Running query: night_day_consumption"
+2025-09-21 19:28:05,128,INFO,src.sql.run_queries,"Saved night_day_consumption to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/night_day_consumption.csv (rows=1)"
+2025-09-21 19:28:05,128,INFO,src.sql.run_queries,"Running query: weekend_weekday_ratio"
+2025-09-21 19:28:05,129,ERROR,src.sql.run_queries,"Query 'weekend_weekday_ratio' failed: Execution failed on sql '
+        SELECT SUM(CASE WHEN is_weekend=1 THEN total_kwh ELSE 0 END) * 1.0 /
+               NULLIF(SUM(CASE WHEN is_weekend=0 THEN total_kwh ELSE 0 END),0) AS weekend_weekday_ratio
+        FROM meter_daily;
+    ': no such column: is_weekend"
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2664, in execute
+    cur.execute(sql, *args)
+sqlite3.OperationalError: no such column: is_weekend
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/run_queries.py", line 24, in run_queries
+    df = pd.read_sql_query(sql, conn)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 528, in read_sql_query
+    return pandas_sql.read_query(
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2728, in read_query
+    cursor = self.execute(sql, params)
+  File "/home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/.env/lib/python3.10/site-packages/pandas/io/sql.py", line 2676, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql '
+        SELECT SUM(CASE WHEN is_weekend=1 THEN total_kwh ELSE 0 END) * 1.0 /
+               NULLIF(SUM(CASE WHEN is_weekend=0 THEN total_kwh ELSE 0 END),0) AS weekend_weekday_ratio
+        FROM meter_daily;
+    ': no such column: is_weekend
+2025-09-21 19:28:05,129,INFO,src.sql.run_queries,"Running query: peak_to_mean_outliers"
+2025-09-21 19:28:05,131,INFO,src.sql.run_queries,"Saved peak_to_mean_outliers to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_to_mean_outliers.csv (rows=0)"
+2025-09-21 19:28:05,131,INFO,src.sql.run_queries,"All queries executed."
+2025-09-21 19:28:40,328,INFO,src.etl.etl_run,"Starting ETL: reading input /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/*.parquet"
+2025-09-21 19:28:40,329,INFO,src.data_io.reader,"Reading parquet /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/home_assignment_raw_data.parquet"
+2025-09-21 19:28:40,343,INFO,src.data_io.reader,"Total rows read: 365"
+2025-09-21 19:28:40,472,INFO,src.data_io.reader,"Expanded into 8760 hourly rows"
+2025-09-21 19:28:40,497,INFO,src.etl.etl_run,"Wrote hourly raw csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_raw.csv"
+2025-09-21 19:28:40,617,INFO,src.etl.etl_run,"Wrote hourly features csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_hourly_features.csv"
+2025-09-21 19:28:40,623,INFO,src.utils.db_utils,"Saving 8760 rows to table meter_hourly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:28:40,762,INFO,src.utils.db_utils,"Saved table meter_hourly"
+2025-09-21 19:28:40,802,INFO,src.etl.etl_run,"Wrote daily csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_daily_agg.csv"
+2025-09-21 19:28:40,802,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:28:40,824,INFO,src.utils.db_utils,"Saved table meter_daily"
+2025-09-21 19:28:40,824,INFO,src.utils.db_utils,"Saving 366 rows to table meter_daily_rolling_7d in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:28:40,842,INFO,src.utils.db_utils,"Saved table meter_daily_rolling_7d"
+2025-09-21 19:28:40,850,INFO,src.etl.etl_run,"Wrote monthly csv: /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/outputs/meter_monthly_agg.csv"
+2025-09-21 19:28:40,850,INFO,src.utils.db_utils,"Saving 13 rows to table meter_monthly in /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:28:40,860,INFO,src.utils.db_utils,"Saved table meter_monthly"
+2025-09-21 19:28:40,860,INFO,src.etl.etl_run,"ETL finished. SQLite DB at /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/data/etl_db.sqlite"
+2025-09-21 19:28:40,860,INFO,src.sql.run_queries,"Running query: yearly_consumption"
+2025-09-21 19:28:40,862,INFO,src.sql.run_queries,"Saved yearly_consumption to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/yearly_consumption.csv (rows=2)"
+2025-09-21 19:28:40,862,INFO,src.sql.run_queries,"Running query: top_meters_by_year"
+2025-09-21 19:28:40,863,INFO,src.sql.run_queries,"Saved top_meters_by_year to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/top_meters_by_year.csv (rows=2)"
+2025-09-21 19:28:40,863,INFO,src.sql.run_queries,"Running query: hourly_profile_avg"
+2025-09-21 19:28:40,866,INFO,src.sql.run_queries,"Saved hourly_profile_avg to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/hourly_profile_avg.csv (rows=24)"
+2025-09-21 19:28:40,866,INFO,src.sql.run_queries,"Running query: peak_hours_distribution"
+2025-09-21 19:28:40,867,INFO,src.sql.run_queries,"Saved peak_hours_distribution to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_hours_distribution.csv (rows=2)"
+2025-09-21 19:28:40,867,INFO,src.sql.run_queries,"Running query: holiday_vs_nonholiday"
+2025-09-21 19:28:40,867,INFO,src.sql.run_queries,"Saved holiday_vs_nonholiday to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/holiday_vs_nonholiday.csv (rows=2)"
+2025-09-21 19:28:40,868,INFO,src.sql.run_queries,"Running query: vacation_effect"
+2025-09-21 19:28:40,868,INFO,src.sql.run_queries,"Saved vacation_effect to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/vacation_effect.csv (rows=2)"
+2025-09-21 19:28:40,869,INFO,src.sql.run_queries,"Running query: monthly_trends"
+2025-09-21 19:28:40,869,INFO,src.sql.run_queries,"Saved monthly_trends to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/monthly_trends.csv (rows=13)"
+2025-09-21 19:28:40,869,INFO,src.sql.run_queries,"Running query: consumption_categories"
+2025-09-21 19:28:40,870,INFO,src.sql.run_queries,"Saved consumption_categories to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/consumption_categories.csv (rows=1)"
+2025-09-21 19:28:40,870,INFO,src.sql.run_queries,"Running query: similar_meters"
+2025-09-21 19:28:40,871,INFO,src.sql.run_queries,"Saved similar_meters to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/similar_meters.csv (rows=1)"
+2025-09-21 19:28:40,871,INFO,src.sql.run_queries,"Running query: night_day_consumption"
+2025-09-21 19:28:40,872,INFO,src.sql.run_queries,"Saved night_day_consumption to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/night_day_consumption.csv (rows=1)"
+2025-09-21 19:28:40,872,INFO,src.sql.run_queries,"Running query: peak_to_mean_outliers"
+2025-09-21 19:28:40,873,INFO,src.sql.run_queries,"Saved peak_to_mean_outliers to /home/mavikumbureh/Projects/Eliq/data-engineer-assignment--Harindra/src/sql/outputs/peak_to_mean_outliers.csv (rows=0)"
+2025-09-21 19:28:40,874,INFO,src.sql.run_queries,"All queries executed."

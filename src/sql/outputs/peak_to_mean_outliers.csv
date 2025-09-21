@@ -1,0 +1,1 @@
+client_id,ext_dev_ref,date_local,total_kwh,mean_kwh,max_kwh,std_kwh,hourly_count,peak_hour,peak_kwh,peak_to_mean_ratio,night_kwh,day_kwh,cumulative_total_kwh,weekend_vs_weekday,month,season,is_holiday,is_summer_vacation,rolling_7d_total_kwh,rolling_30d_total_kwh,consumption_category

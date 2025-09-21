@@ -1,0 +1,7 @@
+pandas>=1.5
+pyarrow>=9.0
+sqlalchemy>=1.4
+pytz
+holidays
+pytest
+scikit-learn
